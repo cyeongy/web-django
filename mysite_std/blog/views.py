@@ -54,9 +54,11 @@ def test7(request):
 
 def list(request):
     post_list = Post.objects.all()
+    return render(request, 'blog/list.html', {'post_all': post_list})
     return HttpResponse(post_list)
 
 
 def detail(request, id):
     post = get_object_or_404(Post, id=id)
+    return render(request, 'blog/detail.html', {'post': post})
     return HttpResponse(post.title)

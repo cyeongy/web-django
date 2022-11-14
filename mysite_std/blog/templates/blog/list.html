@@ -1,3 +1,11 @@
-<h1>Post 목록 보기</h1>
-
-{{post_all}}
+{% extends 'layout.html' %}
+{% block title %}
+    Post 목록
+{% endblock title %}
+{% block content %}
+    <h1>Post 목록 보기</h1>
+    {% for post in post_all %}
+        <a href="{{ post.id }}">{{ post.title }}</a> <br>
+{#        {{ post.title }} <br>#}
+    {% endfor %}
+{% endblock %}
