@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from .models import User
 from .forms import UserCreationForm
 
+
 def profile(request):
     user = User.objects.get(id=1)
-    return render(request, 'account/profile.html', {'user':user})
+    return render(request, 'account/profile.html', {'user': user})
+
 
 def signup(request):
     if request.method == 'POST':
@@ -15,4 +17,4 @@ def signup(request):
             return HttpResponse('OK')
     else:
         form = UserCreationForm()
-    return render(request, 'account/signup_form.html', {'form':form})
+    return render(request, 'account/signup_form.html', {'form': form})

@@ -19,11 +19,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    # path('account/', include('account.urls')),
+    path('account/', include('account.urls')),
     # path('book/', include('book.urls')),
     # path('gallery/', include('gallery.urls')),
 ]
-
 
 from django.conf import settings
 from django.conf.urls.static import static
