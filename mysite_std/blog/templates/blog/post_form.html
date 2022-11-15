@@ -5,8 +5,13 @@
     <form action="" method="POST">
         {% csrf_token %}
         <table>
-            {{form.as_table}}
+            {{ form.as_table }}
         </table>
         <input type="submit" value="등록">
     </form>
+
+    <hr>
+    <a href="{% url 'blog:create' %}">[새 글 쓰기]</a>
+    <a href="{% url 'blog:list' %}">[목록 보기]></a>
+
 {% endblock %}

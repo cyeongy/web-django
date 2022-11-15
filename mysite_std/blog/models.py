@@ -11,6 +11,9 @@ from django.urls import reverse
 
 
 class Post(models.Model):
+    class Meta:
+        ordering = ['-id']
+
     REGION_CHOICE = (
         ('Africa', '아프리카'),
         ('Europe', '유럽'),
@@ -30,6 +33,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:detail', args=[self.id])
 
 
 class Comment(models.Model):

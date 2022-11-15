@@ -4,8 +4,20 @@
 {% endblock title %}
 {% block content %}
     <h1>Post 목록 보기</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="keyword" value="{{ search_key }}">
+        <input type="submit" value="검색">
+    </form>
+
     {% for post in post_all %}
-        <a href="{{ post.id }}">{{ post.title }}</a> <br>
-{#        {{ post.title }} <br>#}
+        <a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a> <br>
+        {#        {{ post.title }} <br>#}
     {% endfor %}
+    <hr>
+    <a href="{% url 'blog:create' %}">[새 글 쓰기]</a>
+    <p>
+    <a href="{% url 'blog:list' %}">[목록 보기]</a>
+
+
 {% endblock %}

@@ -53,7 +53,11 @@ def test7(request):
 
 
 def list(request):
+    search_key = request.POST.get('keyword')
+    print(search_key)
     post_list = Post.objects.all()
+    if search_key:
+        post_list = post_list.filter(title__icontains=search_key)
     return render(request, 'blog/list.html', {'post_all': post_list})
     return HttpResponse(post_list)
 
@@ -64,5 +68,49 @@ def detail(request, id):
     tag_list = post.tag.all()
     return render(request, 'blog/detail.html', {'post': post,
                                                 'comment_all': comment_list,
-                                                'tag_list': tag_list,})
+                                                'tag_list': tag_list, })
     return HttpResponse(post.title)
+
+
+def post_create(request):
+    if request.method == 'POST':
+        # form = PostForm(request.POST)
+        form = PostModelForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            # post = Post.objects.create(**form.cleaned_data)
+            post = form.save()
+        return redirect(post)
+
+        pass
+    else:
+        print("first")
+        form = PostForm()
+        return render(request, 'blog/post_form.html', {'form': form})
+
+
+def post_update(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        form = PostModelForm(request.POST, instance=post)
+        if form.is_valid():
+            print(form.cleaned_data)
+            post = form.save()
+            return redirect(post)
+        print(post)
+    else:
+        form = PostModelForm(instance=post)
+        return render(request, 'blog/post_update.html', {'form': form})
+
+
+# return HttpResponse("update ok")
+
+def post_delete(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect("blog:list")
+
+    else:
+        return render(request, 'blog/post_delete.html', {'post': post})
+    # return HttpResponse("delete ok")

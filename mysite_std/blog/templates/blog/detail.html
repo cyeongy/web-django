@@ -26,4 +26,7 @@
     <a href="{% url 'blog:delete' post.id %}">[글 삭제]</a>
     {% endcomment %}
 
+
+    <a href="{% url 'blog:update' post.id %}">[글 수정]</a> <p></p>
+    <a href="{% url 'blog:delete' post.id %}">[글 삭제]</a>
 {% endblock %}
