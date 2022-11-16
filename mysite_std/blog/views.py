@@ -110,7 +110,6 @@ def post_delete(request, id):
     if request.method == 'POST':
         post.delete()
         return redirect("blog:list")
-
     else:
         return render(request, 'blog/post_delete.html', {'post': post})
     # return HttpResponse("delete ok")

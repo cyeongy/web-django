@@ -3,7 +3,9 @@
 {% block content %}
     <h1>Book 목록 보기</h1>
     {% for book in book_list %}
-        <a href="{% url 'book:detail' book.id %}"> {{book.title}}</a><br>
+        <a href="{{ book.id }}"> {{ book.title }}</a><br>
     {% endfor %}
+    {% comment %}
     <a href="{% url 'book:create' %}">[새 책 등록]</a>
+    {% endcomment %}
 {% endblock %}

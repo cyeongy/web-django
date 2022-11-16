@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 
     'blog',
     'account',
-    # 'book',
+    'book',
     # 'gallery',
 
     'django.contrib.admin',
