@@ -1,4 +1,10 @@
 .DS_Store
+<<<<<<< HEAD
 *.pyc
 __pycache__/
 .idea/
+=======
+*.pyc
+__pycache__/
+.idea/
+>>>>>>> main
